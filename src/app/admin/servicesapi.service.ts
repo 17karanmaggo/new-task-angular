@@ -12,9 +12,9 @@ export class ServicesapiService {
   
   base_url: string = environment.base_url;
 
-  getDashboard(page:any): Observable<any> {
-    var url = `${this.base_url}/api/users?page=${page}`;
-    return this.httpClient.get<any>(url);
+  getDashboard(req:any): Observable<any>{
+    var url = `${this.base_url}/api/users?page=${req?.page}`;
+    return this.httpClient.get<any[]>(url);
   }
 
 }

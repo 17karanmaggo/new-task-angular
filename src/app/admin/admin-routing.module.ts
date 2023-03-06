@@ -14,3 +14,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 }
 ];
 
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class AdminRoutingModule { }

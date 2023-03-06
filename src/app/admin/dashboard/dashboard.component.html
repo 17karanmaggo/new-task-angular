@@ -1,61 +1,37 @@
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-12 text-end mb-3">
-            <button type="button" class="btn btn-primary">Create</button>
-        </div>
-        <div class="col-md-12">
-            <p-table [value]="users" >
-                <ng-template pTemplate="header">
-                  <tr>
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Avatar</th>
-                  </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-user>
-                  <tr>
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.first_name}}</td>
-                    <td>{{ user.last_name}}</td>
-                    <td><img [src]="user.avatar"></td>
-                  </tr>
-                </ng-template>
-              </p-table>
-              
-              
-               
-        </div>
-    </div>
+<!---->
+<nav class="navbar navbar-expand-lg bg-body-tertiary mt-4 ">
+  <div class="container">
+    <h3>Member List</h3>
+    <button class="btn btn-primary" (click)="addstudent()">Add Student</button>
+  </div>
+</nav>
+<div class="container">
 
-
-
-    
-</div>
-
-
-  
-  
-<!-- <table>
-    <thead>
+  <p-table class="px-5" #dt1 dataKey="users" (onLazyLoad)="getDashboard($event)" [lazy]="true" [loading]="isLoading"
+    [currentPageReportTemplate]="'Showing {currentPage} of {totalPages} Pages'" [totalRecords]="totalRecords"
+    [resizableColumns]="true" columnResizeMode="expand" [rows]="10" [showCurrentPageReport]="false" [value]="users"
+    responsiveLayout="scroll" styleClass="p-datatable-stadium " [paginator]="users.length > 0"
+    currentPageReportTemplate="" [globalFilterFields]="['id','email','first_name', 'last_name']" sortField="coach_id"
+    [sortOrder]="-1">
+    <ng-template pTemplate="header">
       <tr>
         <th>ID</th>
+        <th>Email</th>
         <th>First Name</th>
         <th>Last Name</th>
-        <th>Email</th>
         <th>Avatar</th>
+
       </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users">
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
         <td>{{ user.id }}</td>
+        <td>{{ user.email }}</td>
         <td>{{ user.first_name }}</td>
         <td>{{ user.last_name }}</td>
-        <td>{{ user.email }}</td>
-        <td><img [src]="user.avatar" alt="{{ user.first_name }} {{ user.last_name }}"></td>
+        <td><img [src]="user.avatar" alt=""></td>
+
       </tr>
-    </tbody>
-  </table>
-   -->
+    </ng-template>
+  </p-table>
+</div>
