@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary mt-4 ">
   <div class="container">
     <h3>Member List</h3>
-    <button class="btn btn-primary" (click)="addstudent()">Add Student</button>
+    <button class="btn btn-primary" (click)="addEmployee()">Add Employee</button>
   </div>
 </nav>
 <div class="container">
@@ -34,4 +34,37 @@
       </tr>
     </ng-template>
   </p-table>
+
 </div>
+<p-dialog header="Title" [(visible)]="display" [style]="{width: '60vw'}">
+  Content
+  <form #f="ngForm" (ngSubmit)="formSubmit(f)">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-6">
+                <label>Name</label>
+                <input class="form-control" [readonly]="isViewMode" type="text" name="name" pInputText [(ngModel)]="user.name" required
+                #name="ngModel" pattern="^[a-zA-Z ]+$" placeholder="Type Name" class="w-full" />
+              <small [hidden]="name.valid || (name.pristine && !f.submitted)" class="text-danger">
+                Name is required
+              </small>
+            </div>
+            <div class="col-6">
+                <label>JOB</label>
+                <input class="form-control" [readonly]="isViewMode" type="text" name="job" pInputText [(ngModel)]="user.job" required
+                #job="ngModel" pattern="^[a-zA-Z ]+$" placeholder="Type Name" class="w-full" />
+              <small [hidden]="job.valid || (job.pristine && !f.submitted)" class="text-danger">
+                job is required 
+              </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <div style="display: flex; margin-top: 10px;">
+                <button type="submit" class="btn btn-primary" style="margin-left: auto; width: 30%; ">
+                    Submit
+                </button>
+            </div>
+        </div>
+        </div>
+</form>
+</p-dialog>

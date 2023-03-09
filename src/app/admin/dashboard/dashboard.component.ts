@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
   totalRecords: any = 0;
   totalPages: number | undefined;
 user:any;
+Employee:any;
 
 
   constructor(private router: Router, private adminApiService: ServicesapiService, private fb: FormBuilder) { }
@@ -65,9 +66,21 @@ user:any;
 
 
   }
-  addstudent() {
+  addEmployee() {
     this.display = true;
   }
-
+  handleFormSubmit(form: NgForm): void {
+    // value will print the JavaScript Object of the Form Values.
+    console.log(form.value);
+    const data = {
+      name: this.user.name,
+      job: this.user.job
+    };
+    this.adminApiService.addEmployee(data).subscribe((response: any)=>{
+      console.log(data);
+    },)
+    
+  }
+  
 
 }

@@ -6,6 +6,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
 import {ButtonModule} from 'primeng/button';
 import { HttpClientModule } from '@angular/common/http';
+import {DialogModule} from 'primeng/dialog';
+import {AnimateModule} from 'primeng/animate';
 
 
 @NgModule({
@@ -18,7 +20,10 @@ import { HttpClientModule } from '@angular/common/http';
     TableModule,
     ButtonModule,
     HttpClientModule,
+    DialogModule,
     RouterModule.forChild(AdminRoutes),
+  
+  
   ],
   exports :[RouterModule]
 })
