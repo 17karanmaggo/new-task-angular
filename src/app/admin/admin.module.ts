@@ -8,6 +8,10 @@ import {ButtonModule} from 'primeng/button';
 import { HttpClientModule } from '@angular/common/http';
 import {DialogModule} from 'primeng/dialog';
 import {AnimateModule} from 'primeng/animate';
+import { FormsModule } from '@angular/forms';
+import {ContextMenuModule} from 'primeng/contextmenu';
+import {MenuItem} from 'primeng/api';
+
 
 
 @NgModule({
@@ -21,6 +25,9 @@ import {AnimateModule} from 'primeng/animate';
     ButtonModule,
     HttpClientModule,
     DialogModule,
+    FormsModule,
+  ContextMenuModule,
+
     RouterModule.forChild(AdminRoutes),
   
   

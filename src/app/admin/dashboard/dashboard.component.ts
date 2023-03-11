@@ -18,12 +18,10 @@ export class DashboardComponent implements OnInit {
   isLoading: any;
   totalRecords: any = 0;
   totalPages: number | undefined;
-user:any;
-Employee:any;
-
-
+  items:any;
+  user:any;
+  selectedEmpId:any;
   constructor(private router: Router, private adminApiService: ServicesapiService, private fb: FormBuilder) { }
-
 
   ngOnInit() {
 
@@ -31,11 +29,41 @@ Employee:any;
       name: "",
       job: ""
     }
-
-
+    this.items = [
+      {
+        label: "View",
+        icon: "pi pi-fw pi-eye",
+        command: (event: any) => {
+          sessionStorage.setItem('user', this.user);
+        
+        },
+      },
+      {
+        label: "Edit",
+        icon: "pi pi-fw pi-pencil",
+        command: (event: any) => {
+          sessionStorage.setItem('user', this.user);
+    
+        },
+      },
+      {
+        label: "Delete",
+        icon: "pi pi-fw pi-trash",
+        command: (event: any) => {
+ 
+        },
+      },
+    ];
+    // this.getCoachList();
   }
 
-
+  openCm(event: any, cm: any, id:any) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.user = id;
+    cm.show(event);
+    return false;
+  }
   getDashboard(event: any) {
     console.log(this.users);
 
@@ -62,25 +90,31 @@ Employee:any;
       this.totalPages = res?.total_pages;
       this.isLoading = false;
     });
-
-
-
   }
-  addEmployee() {
+  addusers() {
     this.display = true;
-  }
-  handleFormSubmit(form: NgForm): void {
+}
+
+formSubmit(form: NgForm): void {
     // value will print the JavaScript Object of the Form Values.
     console.log(form.value);
     const data = {
       name: this.user.name,
       job: this.user.job
     };
-    this.adminApiService.addEmployee(data).subscribe((response: any)=>{
+    this.adminApiService.addusers(data).subscribe((response: any)=>{
       console.log(data);
-    },)
+    }, error => {
+      console.error('Error creating user', error);
+    })
     
   }
-  
-
+  submit(){
+    this.display=false;
+  }
+  deleteEmployee() {
+    this.adminApiService.deleteEmployee(this.selectedEmpId).subscribe((res: any) => {
+      console.log("Deleted", res);
+    },)
+  }
 }
